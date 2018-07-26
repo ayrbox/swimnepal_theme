@@ -1,0 +1,78 @@
+$dark-color: #000;
+$text-color: #fff;
+
+.header-wrapper {
+  min-height: 50.4px;
+  background-color: transparent;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 3000;
+  border-bottom: 1px solid $text-color;
+  color: $text-color;
+  padding: 30px 0;
+  transition: all 0.2s linear 0.3s;
+
+  &.sps--blw,
+  &.fix-header {
+    border-bottom-color: transparent;
+    background-color: $text-color;
+    padding: 0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.nav-item {
+  .header-wrapper & {
+    color: $text-color;
+  }
+
+  .header-wrapper.sps--blw &,
+  .header-wrapper.fix-header & {
+    color: $dark-color;
+  }
+}
+
+.nav-link {
+  .header-wrapper & {
+    color: $text-color;
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+    transition: color 0.2s linear 0.3s;
+  }
+
+  .header-wrapper.sps--blw &,
+  .header-wrapper.fix-header & {
+    color: $dark-color;
+  }
+
+  .dropdown-menu .nav-item > & {
+    color: $dark-color;
+  }
+}
+
+.navbar-brand {
+  .header-wrapper & {
+    img {
+      max-height: 80px;
+    }
+  }
+
+  .header-wrapper &.sps-alt {
+    display: none;
+  }
+
+  .header-wrapper.sps--blw &,
+  .header-wrapper.fix-header & {
+    display: none;
+  }
+  .header-wrapper.sps--blw &.sps-alt,
+  .header-wrapper.fix-header &.sps-alt {
+    display: block;
+  }
+}
+
+body.fix-header {
+  padding-top: 72px;
+}

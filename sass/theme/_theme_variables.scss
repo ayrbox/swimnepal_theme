@@ -1,0 +1,19 @@
+// Use this file to overwrite the basic Bootstrap variables and add your own variables
+// To overwrite a Bootstrap variable you don´t have to touch the Bootstrap folder.
+// Just copy a variable from src/sass/bootstrap4/_variables.scss, paste it here and edit the value.
+
+$font-family-sans-serif: Nunito, BlinkMacSystemFont, "Segoe UI", Roboto,
+  "Helvetica Neue", Arial, sans-serif;
+
+$primary: #343a40; // Thats a sample how you could change a BootStrap variable.
+
+$default-font-size: 90% !default;
+
+$englishcouncil-colors: (
+  main: #343a40,
+  secondary: #1c1f22,
+  text: #3c3c3c,
+  text-secondary: #fff,
+  border: #343a40,
+  light-grey: #e9ebe7
+);

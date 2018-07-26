@@ -1,0 +1,77 @@
+/**
+ * Footer */
+
+#wrapper-footer {
+  background-color: map-get($englishcouncil-colors, main);
+  background-image: linear-gradient(
+    to right,
+    rgba(8, 137, 249, 0.3),
+    rgba(11, 131, 150, 0.6)
+  );
+  color: #fff;
+  padding: 80px 0 0 0;
+
+  .footer-section {
+    padding-bottom: 50px;
+  }
+
+  .copyright-section {
+    padding: 1.5rem 0;
+    background-color: map-get($englishcouncil-colors, secondary);
+  }
+
+  a,
+  p,
+  li {
+    color: #fff;
+  }
+}
+
+.footer-menu-wrapper {
+  .navbar-nav {
+    .nav-item {
+      .nav-link {
+        color: #fff;
+        position: relative;
+        padding-left: 1rem;
+
+        &:before {
+          font: normal normal normal 14px/1 FontAwesome;
+          content: "\f0da";
+          position: absolute;
+          left: 0;
+          top: 0.8rem;
+        }
+      }
+    }
+  }
+}
+
+.social-icons-footer {
+  list-style: none;
+  padding-left: 0;
+
+  li {
+    display: inline-block;
+    padding: 0 0.4rem;
+  }
+
+  .fa {
+    color: #fff;
+  }
+}
+
+.footer-contact {
+  position: relative;
+  padding: 0.3rem 0 0.5rem 2.5rem;
+
+  i.fa {
+    position: absolute;
+    left: 0;
+    top: 0.25rem;
+  }
+}
+
+.footer-heading {
+  margin-bottom: 1.5rem;
+}

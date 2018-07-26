@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+   db:
+     container_name: swimdbcontainer
+     image: mariadb:latest
+     restart: unless-stopped     
+     environment:
+       MYSQL_ROOT_PASSWORD: rootpass
+       MYSQL_DATABASE: swimdb_dev
+       MYSQL_USER: swimuser
+       MYSQL_PASSWORD: swimpass
+
+   wordpress:
+     depends_on:
+       - db
+     container_name: swimwebcontainer
+     image: wordpress:latest
+     restart: unless-stopped
+     ports:
+       - "8080:80"
+     volumes:       
+       - ./:/var/www/html/wp-content/themes/swimnepal_theme/
+     environment:
+       WORDPRESS_DB_HOST: swimdbcontainer:3306
+       WORDPRESS_DB_NAME: swimdb_dev
+       WORDPRESS_DB_USER: swimuser
+       WORDPRESS_DB_PASSWORD: swimpass
+       WORDPRESS_TABLE_PREFIX: wp_
+

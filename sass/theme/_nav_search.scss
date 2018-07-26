@@ -1,0 +1,42 @@
+$search-color: #fff;
+
+.nav-search-toggler {
+  color: $search-color;
+  position: relative;
+  padding-top: 0;
+  padding-bottom: 0;
+
+  &::before {
+    content: "\f002";
+    display: inline-block;
+    font-family: FontAwesome;
+    font-size: 24px;
+  }
+
+  &:hover {
+    color: $search-color;
+  }
+}
+
+.nav-search-form {
+  height: 0;
+  overflow: hidden;
+  position: absolute;
+  right: 0;
+  visibility: hidden;
+
+  width: 300px;
+  height: auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  transition: all 0.3s linear 0.3s;
+
+  &:hover {
+    visibility: visible;
+  }
+}
+
+.nav-search-toggler:hover + .nav-search-form {
+  visibility: visible;
+}
