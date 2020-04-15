@@ -67,6 +67,7 @@ $text-color: #fff;
   .header-wrapper.fix-header & {
     display: none;
   }
+
   .header-wrapper.sps--blw &.sps-alt,
   .header-wrapper.fix-header &.sps-alt {
     display: block;
@@ -76,3 +77,13 @@ $text-color: #fff;
 body.fix-header {
   padding-top: 72px;
 }
+
+
+/**
+ * Header Typography
+ */
+
+.entry-header {
+  font-family: 'Playfair Display', serif;
+}
+

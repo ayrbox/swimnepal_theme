@@ -3927,8 +3927,10 @@ Object.defineProperty(exports, '__esModule', { value: true });
 	}
 })();
 
-/* ========================================================================
- * ScrollPos-Styler v0.7.0
+/**
+ * @license
+ * ========================================================================
+ * ScrollPos-Styler v0.7.1
  * https://github.com/acch/scrollpos-styler
  * ========================================================================
  * Copyright 2015 Achim Christ
@@ -3966,15 +3968,17 @@ var ScrollPosStyler = (function(document, window) {
       offsetTag = "data-sps-offset";
 
   /* ====================
-   * private funcion to check scroll position
+   * private function to check scroll position
    * ==================== */
   function onScroll() {
+
     // ensure that events don't stack
     if (!busy) {
-      // find elements to update
-      var elementsToUpdate = getElementsToUpdate();
 
+      // find elements to update
+      var elementsToUpdate = getElementsToUpdate(false);
       if (elementsToUpdate.length > 0) {
+
         // suspend accepting scroll events
         busy = true;
 
@@ -3987,13 +3991,13 @@ var ScrollPosStyler = (function(document, window) {
   }
 
   /* ====================
-   * private funcion to find elements to update
+   * private function to find elements to update
    * ==================== */
-  function getElementsToUpdate() {
+  function getElementsToUpdate(init) {
+    var elementsToUpdate = [];
+
     // get current scroll position from window
     scrollPosY = window.pageYOffset;
-
-    var elementsToUpdate = [];
 
     // iterate over elements
     // for (var elem of elements) {
@@ -4007,7 +4011,8 @@ var ScrollPosStyler = (function(document, window) {
       var elOnTop = element.classList.contains(classAbove);
 
       // if we were above, and are now below scroll position...
-      if (elOnTop && scrollPosY > elScrollOffsetY) {
+      if ((init || elOnTop) && scrollPosY > elScrollOffsetY) {
+
         // remember element
         elementsToUpdate.push({
           element: element,
@@ -4016,7 +4021,8 @@ var ScrollPosStyler = (function(document, window) {
         });
 
       // if we were below, and are now above scroll position...
-      } else if (!elOnTop && scrollPosY <= elScrollOffsetY) {
+      } else if ((init || !elOnTop) && scrollPosY <= elScrollOffsetY) {
+
         // remember element
         elementsToUpdate.push({
           element: element,
@@ -4030,9 +4036,10 @@ var ScrollPosStyler = (function(document, window) {
   }
 
   /* ====================
-   * private funcion to update elements
+   * private function to update elements
    * ==================== */
   function updateElements(elementsToUpdate) {
+
     // iterate over elements
     // for (var elem of elements) {
     for (var i = 0; elementsToUpdate[i]; ++i) { // chrome workaround
@@ -4050,16 +4057,17 @@ var ScrollPosStyler = (function(document, window) {
   /* ====================
    * public function to initially style elements based on scroll position
    *
-   * Options:
-   *    scrollOffsetY (number): Default scroll position in px to trigger the style. Default is 1.
-   *    spsClass (String): Classname used to determine which elements to style. Default is 'sps'.
-   *    classAbove (String): Classname added to the elements when the window is scrolled above the defined position. Default is 'sps--abv'.
-   *    classBelow (String): Classname added to the elements when the window is scrolled below the defined position. Default is 'sps--blw'.
-   *    offsetTag (String): HTML tag used on the element to specify a scrollOffsetY other than the default.
+   * options:
+   *    scrollOffsetY (number): default scroll position in px to trigger the style. Default is 1.
+   *    spsClass (string): classname used to determine which elements to style. Default is 'sps'.
+   *    classAbove (string): classname added to the elements when the window is scrolled above the defined position. Default is 'sps--abv'.
+   *    classBelow (string): classname added to the elements when the window is scrolled below the defined position. Default is 'sps--blw'.
+   *    offsetTag (string): HTML tag used on the element to specify a scrollOffsetY other than the default.
    *
    * ==================== */
   var pub = {
     init: function(options) {
+
       // suspend accepting scroll events
       busy = true;
 
@@ -4075,15 +4083,16 @@ var ScrollPosStyler = (function(document, window) {
         offsetTag = options.offsetTag || offsetTag;
       }
 
-      // find elements to update
-      var elementsToUpdate = getElementsToUpdate();
-
+      // ensure all elements have classAbove
+      var elementsToUpdate = getElementsToUpdate(true);
       if (elementsToUpdate.length > 0) {
+
         // asynchronuously update elements
         window.requestAnimationFrame(function() {
           updateElements(elementsToUpdate);
         });
       } else {
+
         // resume accepting scroll events
         busy = false;
       }
@@ -4094,8 +4103,10 @@ var ScrollPosStyler = (function(document, window) {
   /* ====================
    * main initialization
    * ==================== */
+
   // add initial style / class to elements when DOM is ready
   document.addEventListener("DOMContentLoaded", function() {
+
     // defer initialization to allow browser to restore scroll position
     window.setTimeout(pub.init, 1);
   });
